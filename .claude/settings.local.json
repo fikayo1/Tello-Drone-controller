@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -c \"import ast; ast.parse\\(open\\('server.py'\\).read\\(\\)\\); print\\('server.py OK'\\)\")",
+      "Bash(curl -s -X POST http://localhost:5001/api/connect)",
+      "Bash(curl -s -X POST http://localhost:5000/api/connect)"
+    ]
+  }
+}
