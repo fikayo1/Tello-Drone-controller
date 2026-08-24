@@ -2,7 +2,7 @@
 
 A speaker's guide for presenting this project. It explains the architecture,
 the protocol, every subsystem, the engineering trade-offs, and the bugs we hit
-and fixed — plus a slide outline, a live-demo script, and likely Q&A.
+and fixed — plus a slide outline, a live-demo script, and likely Q&A. Just added for extra test
 
 > **One-line pitch:** *A browser becomes a drone remote control — a small Flask
 > server translates web clicks into the Tello's raw UDP radio protocol, and
