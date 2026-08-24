@@ -1,5 +1,5 @@
 """
-Tello Drone Web Controller — backend
+Tello Drone Web Controller 2.0 — backend
 -------------------------------------
 A small Flask server that bridges a browser-based button UI to a DJI Tello
 (or Tello-compatible) drone using its built-in UDP SDK protocol.
