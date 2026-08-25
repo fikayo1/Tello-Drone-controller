@@ -12,7 +12,7 @@ SETUP
      network (named something like "TELLO-XXXXXX").
   2. pip install -r requirements.txt
   3. python server.py
-  4. Open http://localhost:5001 in a browser.
+  4. Open http://localhost:5001 in a browser. Added a new tesr for a feat
 
 The Tello must stay in range of your computer's Wi-Fi the whole time —
 there is no separate "remote" link, your laptop/phone *is* the remote.
