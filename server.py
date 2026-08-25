@@ -32,7 +32,7 @@ TELLO_PORT = 8889           # Tello command port
 LOCAL_PORT = 9000           # Port we listen on for command replies
 STATE_PORT = 8890           # Port the Tello broadcasts its telemetry/state to
 VIDEO_PORT = 11111          # Port the Tello streams raw H.264 video to
-DEFAULT_TIMEOUT = 7         # seconds to wait for a reply before giving up
+DEFAULT_TIMEOUT = 8         # seconds to wait for a reply before giving up
 
 # Where captured photos are written to on the server.
 SNAPSHOT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "snapshots")
