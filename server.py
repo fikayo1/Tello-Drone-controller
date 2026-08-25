@@ -27,7 +27,7 @@ from datetime import datetime
 import cv2
 from flask import Flask, render_template, jsonify, request, Response, send_from_directory
 
-TELLO_IP = "192.168.10.1"   # Fixed IP of the Tello when connected to its Wi-Fi
+TELLO_IP = "192.168.10.1"   # Fixed IP of the Tello when connected to its Wi-Fi and i am adding a new fix to test multi action. I want to reject the fix
 TELLO_PORT = 8889           # Tello command port
 LOCAL_PORT = 9000           # Port we listen on for command replies
 STATE_PORT = 8890           # Port the Tello broadcasts its telemetry/state to
