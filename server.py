@@ -82,6 +82,7 @@ def send_command(command: str, timeout: float = DEFAULT_TIMEOUT) -> str:
 def send_command_noreply(command: str) -> None:
     """Fire a command without waiting for a reply. Used for the high-frequency
     'rc' joystick command, which the Tello does not acknowledge."""
+    # This helper keeps responsive control input separate from acknowledged commands.
     sock.sendto(command.encode("utf-8"), (TELLO_IP, TELLO_PORT))
 
 
