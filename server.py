@@ -70,6 +70,7 @@ threading.Thread(target=_listen, daemon=True).start()
 
 def send_command(command: str, timeout: float = DEFAULT_TIMEOUT) -> str:
     """Send one SDK text command to the Tello and wait for its reply."""
+    # Keep command/reply handling centralized to preserve the SDK request flow.
     _reply_event.clear()
     sock.sendto(command.encode("utf-8"), (TELLO_IP, TELLO_PORT))
     if _reply_event.wait(timeout):
