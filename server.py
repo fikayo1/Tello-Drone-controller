@@ -227,6 +227,18 @@ def index():
     return render_template("index.html")
 
 
+@app.route("/api/health", methods=["GET"])
+def api_health():
+    """Report local controller availability without sending a drone command."""
+    with _state_lock:
+        telemetry_fresh = bool(_state["data"]) and (time.time() - _state["ts"]) < 3.0
+    return jsonify(
+        status="ok",
+        video_streaming=_video_running.is_set(),
+        telemetry_fresh=telemetry_fresh,
+    )
+
+
 @app.route("/api/connect", methods=["POST"])
 def api_connect():
     """Must be called once before any other command — puts the Tello into

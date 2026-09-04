@@ -14,6 +14,10 @@ Flask server as the bridge:
 Browser (buttons) --HTTP--> server.py --UDP--> Tello drone
 ```
 
+The local controller also exposes `GET /api/health`. It confirms that the
+Flask process is reachable without sending a command to the drone, and reports
+whether video streaming and fresh telemetry are currently available.
+
 ## Setup
 
 1. Install dependencies:
