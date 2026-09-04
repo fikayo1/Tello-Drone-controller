@@ -49,6 +49,10 @@ sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 sock.bind(("", LOCAL_PORT))
 
 _lock = threading.Lock()
+# The Tello SDK has a single reply channel. Serialising request/reply commands
+# prevents two simultaneous browser actions from assigning one reply to the
+# wrong command.
+_command_lock = threading.Lock()
 _last_reply = {"text": None}
 _reply_event = threading.Event()
 
@@ -70,13 +74,15 @@ threading.Thread(target=_listen, daemon=True).start()
 
 def send_command(command: str, timeout: float = DEFAULT_TIMEOUT) -> str:
     """Send one SDK text command to the Tello and wait for its reply."""
-    # Keep command/reply handling centralized to preserve the SDK request flow.
-    _reply_event.clear()
-    sock.sendto(command.encode("utf-8"), (TELLO_IP, TELLO_PORT))
-    if _reply_event.wait(timeout):
-        with _lock:
-            return _last_reply["text"]
-    return "timeout: no reply from drone (check Wi-Fi connection)"
+    # Tello replies do not include a request ID, so only one acknowledged
+    # command may be in flight at a time.
+    with _command_lock:
+        _reply_event.clear()
+        sock.sendto(command.encode("utf-8"), (TELLO_IP, TELLO_PORT))
+        if _reply_event.wait(timeout):
+            with _lock:
+                return _last_reply["text"]
+        return "timeout: no reply from drone (check Wi-Fi connection)"
 
 
 def send_command_noreply(command: str) -> None:
